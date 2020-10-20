@@ -9,7 +9,7 @@ var names = ["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg",
   
   console.log(leftImage);
   console.log(rightImage);
-  
+  var randArr =[] ;
   
   Product.all = []; 
   
@@ -37,6 +37,12 @@ var names = ["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg",
   var leftPro, rightPro, middlePro ;
   function render() {
     do {
+       
+    var  randArr = getThreeDiffImg(0,( Product.all.length -1 )) ; 
+
+    
+
+
     leftPro = Product.all[randomNumber(0, Product.all.length - 1)];
     rightPro = Product.all[randomNumber(0, Product.all.length - 1)];
     middlePro = Product.all[randomNumber(0, Product.all.length - 1)];
@@ -53,6 +59,11 @@ var names = ["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg",
     middleImage.setAttribute('src', middlePro.imagePath);
     middleImage.setAttribute('alt', middlePro.productName);
     middleImage.setAttribute('title', middlePro.productName);
+
+
+    //var randArr = getThreeDifRandom(0  (names.length-1  )) ;
+
+
     }
 while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ; 
  
@@ -63,7 +74,7 @@ while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ;
 
   render ();
   
-  var totalClicks = 0;
+  var totalClicks = 0 ;
   
   
   
@@ -94,16 +105,20 @@ while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ;
         if(event.target.id === 'middleImage') {
           middlePro.votes++;
         }
-  
+        sendClicksToLS () ;
         render();
       }
     } else if (totalClicks === 25){
       renderSummary();
       createChartSummary();
+      getClicksFromLS();
       console.log(totalClicks);
     }
+   
   
   }
+/////// diff images in every round
+ 
   
   function renderSummary() {
     imagesSection.removeEventListener('click',handleClickonPro);
@@ -125,6 +140,13 @@ while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ;
   function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+
+function getThreeDiffImg (min,max) {
+
+  
+}
+
+
 
   /////////////
 
@@ -188,5 +210,31 @@ while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ;
     });
   }
   
+////////////////////////////////////////////
 
-        
+
+function sendClicksToLS () {
+  var TotalClicksArr = JSON.stringify(Product.all) ;
+  localStorage.setItem('TotalClicks',TotalClicksArr);
+  
+  
+  
+  
+  }
+  
+  function getClicksFromLS() {
+   
+    var ClicksArray = localStorage.getItem('TotalClicks');
+    console.log(ClicksArray);
+    
+    
+    
+    if(ClicksArray) {
+      Product.all = JSON.parse(ClicksArray)
+      //renderSummary();
+    }
+  }
+  
+  console.log(Product.all);
+  getClicksFromLS () ;
+  console.log(Product.all); 
