@@ -1,5 +1,5 @@
-var names = ["bag","banana","bathroom","boots","breakfast",
-"bubblegum","chair","cthulhu","dog-duck","dragon","pen","pet-sweep","scissors","shark","sweep","tauntaun","unicorn","usb","water-can","wine-glass"
+var names = ["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg",
+"bubblegum.jpg","chair.jpg","cthulhu.jpg","dog-duck.jpg","dragon.jpg","pen.jpg","pet-sweep.jpg","scissors.jpg","shark.jpg","sweep.png","tauntaun.jpg","unicorn.jpg","usb.gif","water-can.jpg","wine-glass.jpg"
     
   ];
   
@@ -15,7 +15,7 @@ var names = ["bag","banana","bathroom","boots","breakfast",
   
   function Product(pName) {
     this.productName = pName;//property
-    this.imagePath = `assets/${pName}.jpg`;
+    this.imagePath = `assets/${pName}`;
     this.views = 0;
     this.votes = 0;
     Product.all.push(this);
@@ -45,9 +45,9 @@ var names = ["bag","banana","bathroom","boots","breakfast",
     rightImage.setAttribute('alt', rightPro.productName);
     rightImage.setAttribute('title', rightPro.productName);
 
-    middleImage.setAttribute('src', rightPro.imagePath);
-    middleImage.setAttribute('alt', rightPro.productName);
-    middleImage.setAttribute('title', rightPro.productName);
+    middleImage.setAttribute('src', middlePro.imagePath);
+    middleImage.setAttribute('alt', middlePro.productName);
+    middleImage.setAttribute('title', middlePro.productName);
 
 
 

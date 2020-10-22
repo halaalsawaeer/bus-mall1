@@ -1,0 +1,30 @@
+body {
+    background-color : #3185fc ;
+color: #f9dc5c
+
+
+
+}
+img {
+ width: 200px ;
+height: 200px ;
+
+
+}
+#leftImage {
+
+margin-left: 1cm ; 
+margin-right: 1cm ;
+
+
+}
+#rightImage {
+margin-left :1cm ;
+margin-right: 1cm ;
+
+}
+#middleImage {
+margin-right: 1cm ;
+margin-left: 1cm  ;
+
+}
