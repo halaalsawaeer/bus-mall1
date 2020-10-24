@@ -3,7 +3,7 @@ var names = ["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg",
     
   ];
   
-  var leftImage = document.getElementById('leftImage');
+  var leftImage = document.getElementById('leftImage');  
   var rightImage = document.querySelector('#rightImage');
   var middleImage=document.getElementById('middleImage');
   
@@ -13,7 +13,7 @@ var names = ["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg",
   
   Product.all = []; 
   
-  function Product(pName) {
+  function Product(pName) {     ///// constructor
     this.productName = pName;
     this.imagePath = `assets/${pName}`;
     this.seen = 0;
@@ -35,7 +35,7 @@ var names = ["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg",
   
   
   var leftPro, rightPro, middlePro ;
-  function render() {
+  function render() { /////////// for showing images in the website
     do {
     leftPro = Product.all[randomNumber(0, Product.all.length - 1)];
     rightPro = Product.all[randomNumber(0, Product.all.length - 1)];
@@ -54,8 +54,26 @@ var names = ["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg",
     middleImage.setAttribute('alt', middlePro.productName);
     middleImage.setAttribute('title', middlePro.productName);
     }
-while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ; 
+    ///////this for making every image unique from the other
+while( leftPro===middlePro || leftPro === rightPro || middlePro ===rightPro) ; 
  
+
+leftImage.setAttribute('src', leftPro.imagePath);
+leftImage.setAttribute('alt', leftPro.productName);
+leftImage.setAttribute('title', leftPro.productName);
+
+rightImage.setAttribute('src', rightPro.imagePath);
+rightImage.setAttribute('alt', rightPro.productName);
+rightImage.setAttribute('title', rightPro.productName);
+
+middleImage.setAttribute('src', middlePro.imagePath);
+middleImage.setAttribute('alt', middlePro.productName);
+middleImage.setAttribute('title', middlePro.productName);
+
+
+
+
+
 
 
 
@@ -67,7 +85,7 @@ while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ;
   
   
   
-  var imagesSection = document.querySelector('#imagesSection');
+  var imagesSection = document.querySelector('#imagesSection'); /// this is  another way of getting the element by id
   imagesSection.addEventListener('click', handleClickonPro);
   
   function handleClickonPro(event) {
@@ -98,7 +116,7 @@ while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ;
         render();
       }
     } else if (totalClicks === 25){
-      renderSummary();
+      renderSummary();   // we render the summeries after clicking 25 clicks
       createChartSummary();
       console.log(totalClicks);
     }
@@ -106,7 +124,7 @@ while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ;
   }
   
   function renderSummary() {
-    imagesSection.removeEventListener('click',handleClickonPro);
+    imagesSection.removeEventListener('click',handleClickonPro); 
     console.log('you voted 25 times already!!');
     var ulE1 = document.getElementById('finalResults');
     for(var i=0; i<Product.all.length; i++) {
@@ -160,19 +178,16 @@ while( leftPro==middlePro || leftPro == rightPro || middlePro ==rightPro) ;
           label: '# of clicks',
           data: clicksArr,
           backgroundColor:
-            'rgba(54, 162, 235, 0.2)',
-          borderColor:
-            'rgba(54, 162, 235, 1)',
-          borderWidth: 2
+            'rgba(178,34,34)', // we can play around here with the colors
+         
+         
         },
         {
           label: '# of Views',
           data: shownArr,
           backgroundColor:
-            'rgba(255, 99, 132, 0.2)',
-          borderColor:
-            'rgba(255, 99, 132, 1)',
-          borderWidth: 3
+            'rgba(1, 100, 111, 1)',
+         
         }]
       },
       options: {
